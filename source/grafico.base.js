@@ -121,7 +121,7 @@ Grafico.BaseGraph = Class.create(Grafico.Base, {
       font_size:              10,                                   // Label font size
       show_horizontal_labels: true,
       show_vertical_labels:   true,
-      show_ticks:  			  true,
+      show_ticks:             true,
       vertical_label_unit:    '',
       background_color:      element.getStyle('backgroundColor'),
       label_color:           '#000',                               // Label text color
@@ -140,8 +140,9 @@ Grafico.BaseGraph = Class.create(Grafico.Base, {
       left_padding:           false,                                  // set a standard leftpadding regardless of label width
       label_rotation:         0,
       label_max_size:         false,
-	  min: 					  0,
-	  max: 					  null
+      focus_hint:             true,
+      min:                    0,
+      max:                    null
     };
 
     Object.extend(this.options, this.chartDefaults() || { });
@@ -371,7 +372,7 @@ draw: function () {
 		this.drawAxis();
 	}
 
-	if (this.start_value !== 0) {
+	if (this.start_value !== 0 && this.options.focus_hint) {
 		this.drawFocusHint();
 	}
 
