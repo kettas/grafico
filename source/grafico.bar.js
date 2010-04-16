@@ -410,10 +410,18 @@ Grafico.HorizontalBarGraph = Class.create(Grafico.BarGraph, {
         }
 
         hoverbar.hover(function (event) {
-          bargraphset.animate({fill: hover_color,stroke:hover_color}, 200);
+          if(horizontal_rounded) {
+            bargraphset.animate({fill: hover_color,stroke:hover_color}, 200);
+          } else {
+            bargraph.animate({fill: hover_color,stroke:hover_color}, 200);
+          }
           hoverSet.animate({opacity:1}, 200);
         }, function (event) {
-          bargraphset.animate({fill: color2,stroke:color2}, 200);
+          if(horizontal_rounded) {
+            bargraphset.animate({fill: color2,stroke:color2}, 200);
+          } else {
+            bargraph.animate({fill: color2,stroke:color2}, 200);
+          }
           hoverSet.animate({opacity:0}, 200);
         });
       }
