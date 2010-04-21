@@ -6,14 +6,15 @@
  * Licensed under the MIT license. http://www.opensource.org/licenses/mit-license.php
  *
  */
+
 "use strict";
 Grafico.LineGraph = Class.create(Grafico.BaseGraph, {
   chartDefaults: function () {
     return {
-      line : true,
-      start_at_zero : true,
-      stroke_width : 5,
-      curve_amount : 10
+      line: true,
+      start_at_zero: true,
+      stroke_width: 5,
+      curve_amount: 10
     };
   },
 
@@ -50,14 +51,15 @@ Grafico.LineGraph = Class.create(Grafico.BaseGraph, {
     var circle = this.paper.circle(x, y, this.options.marker_size),
         old_marker_size = this.options.marker_size,
         color2 = this.options.hover_color || color,
-        new_marker_size = parseInt(1.7*old_marker_size, 10);
+        new_marker_size = parseInt(1.7 * old_marker_size, 10);
+
     circle.attr({ 'stroke-width': '1px', stroke: this.options.background_color, fill: color });
     this.globalMarkerSet.push(circle);
 
     circle.hover(function (event) {
-      circle.animate({r : new_marker_size,fill : color2}, 200);
+      circle.animate({r: new_marker_size, fill: color2}, 200);
     }, function (event) {
-      circle.animate({r : old_marker_size, fill : color}, 200);
+      circle.animate({r: old_marker_size, fill: color}, 200);
     });
   },
 
@@ -66,10 +68,10 @@ Grafico.LineGraph = Class.create(Grafico.BaseGraph, {
     index -= this.options.stacked_fill || this.options.area ? 1 : 0;
 
     var currentset = this.options.stacked ? this.real_data : this.data_sets,
-        currentvalue = currentset.collect(function (data_set) {return data_set[1][index];})[graphindex];
+        currentvalue = currentset.collect(function (data_set) { return data_set[1][index]; })[graphindex];
 
     if (currentvalue) {
-      currentvalue = ""+currentvalue.toString().split('.');
+      currentvalue = "" + currentvalue.toString().split('.');
       if (currentvalue[1]) {
         currentvalue[1] = currentvalue[1].truncate(3, '');
       }
@@ -86,14 +88,16 @@ Grafico.LineGraph = Class.create(Grafico.BaseGraph, {
           circle = this.paper.circle(x, y, this.options.marker_size).attr({ 'stroke-width': '1px', stroke: this.options.background_color, fill: color,opacity:0}),
           block = this.paper.rect(rectx, recty, rectw, recth).attr({fill:color, 'stroke-width': 0, stroke : color,opacity:0});
 
-      if (this.options.datalabels) {datalabel = datalabel+": "+currentvalue;
-      } else {                      datalabel = ""+currentvalue;
+      if (this.options.datalabels) {
+        datalabel = datalabel + ": " + currentvalue;
+      } else {
+        datalabel = "" + currentvalue;
       }
-      datalabel += this.options.vertical_label_unit ? " "+this.options.vertical_label_unit:"";
+      datalabel += this.options.vertical_label_unit ? " " + this.options.vertical_label_unit : "";
 
       var hoverSet = this.paper.set(),
           textpadding = 4,
-          text = this.paper.text(circle.attrs.cx, circle.attrs.cy-(this.options.font_size*1.5)-2*textpadding, datalabel).attr({'font-size': this.options.font_size, fill:this.options.hover_text_color,opacity: 1}),
+          text = this.paper.text(circle.attrs.cx, circle.attrs.cy - (this.options.font_size * 1.5) -2 * textpadding, datalabel).attr({'font-size': this.options.font_size, fill:this.options.hover_text_color, opacity: 1}),
           textbox = text.getBBox(),
           roundRect= this.drawRoundRect(text, textbox, textpadding),
           nib = this.drawNib(text, textbox, textpadding);
@@ -115,15 +119,15 @@ Grafico.LineGraph = Class.create(Grafico.BaseGraph, {
 Grafico.AreaGraph = Class.create(Grafico.LineGraph, {
   chartDefaults: function () {
     return {
-      area:true,
-      area_opacity:false,
+      area: true,
+      area_opacity: false,
       stroke_width: 0,
       curve_amount: 10
     };
   },
 
   drawPlot: function (index, cursor, x, y, color, coords, datalabel, element, graphindex, dontdraw) {
-    var filltype = this.options.area||this.options.stacked_fill;
+    var filltype = this.options.area || this.options.stacked_fill;
 
     if (!dontdraw) {
       if (filltype === true) {
@@ -147,9 +151,9 @@ Grafico.AreaGraph = Class.create(Grafico.LineGraph, {
       return this.startPlot(cursor, x, y, color);
     }
 
-    if (this.options.curve_amount && index > 1 && (index < coords.length-1)) {
+    if (this.options.curve_amount && index > 1 && (index < coords.length - 1)) {
       cursor.cplineTo(x, y, this.options.curve_amount);
-    } else if (this.options.curve_amount && !filltype && (index = 1 || (index = coords.length-1))) {
+    } else if (this.options.curve_amount && !filltype && (index = 1 || (index = coords.length - 1))) {
       cursor.cplineTo(x, y, this.options.curve_amount);
     } else {
       cursor.lineTo(x, y);
@@ -160,10 +164,10 @@ Grafico.AreaGraph = Class.create(Grafico.LineGraph, {
 Grafico.StackGraph = Class.create(Grafico.AreaGraph, {
   chartDefaults: function () {
     return {
-      stacked:true,
-      stacked_fill:true,
-      stroke_width : 0,
-      curve_amount : 10
+      stacked: true,
+      stacked_fill: true,
+      stroke_width: 0,
+      curve_amount: 10
     };
   },
 
@@ -174,8 +178,8 @@ Grafico.StackGraph = Class.create(Grafico.AreaGraph, {
   },
 
   stackData: function (stacked_data) {
-	// apparently the arrays are pointers
-	// which is the only reason this actually works
+    // apparently the arrays are pointers
+    // which is the only reason this actually works
     var stacked_data_array = stacked_data.collect(
       function (data_set) {
         return data_set[1];
@@ -183,7 +187,7 @@ Grafico.StackGraph = Class.create(Grafico.AreaGraph, {
 
     for (var i = stacked_data_array.length - 2; i >= 0; i--) {
       for (var j = 0; j < stacked_data_array[0].length; j++) {
-    	  stacked_data_array[i][j] += stacked_data_array[i + 1][j];
+        stacked_data_array[i][j] += stacked_data_array[i + 1][j];
       }
     }
     return stacked_data;
@@ -193,15 +197,15 @@ Grafico.StackGraph = Class.create(Grafico.AreaGraph, {
 Grafico.StreamGraph = Class.create(Grafico.StackGraph, {
   chartDefaults: function () {
     return {
-      stacked:true,
-      stacked_fill:true,
-      stroke_width:5,
+      stacked: true,
+      stacked_fill: true,
+      stroke_width: 5,
       grid: false,
       draw_axis: false,
       show_horizontal_labels: false,
       show_vertical_labels:   false,
       stream: true,
-      stream_line_smoothing: false, // false, simple, weighted
+      stream_line_smoothing:  false, // false, simple, weighted
       stream_smart_insertion: false,
       curve_amount: 4,
       stream_label_threshold: 0
@@ -218,10 +222,10 @@ Grafico.StreamGraph = Class.create(Grafico.StackGraph, {
         return data_set[1];
       });
 
-    var base_line = [];
-    for(var j = 0; j < base_line_data[0].length; j++) {
+    var base_line = [], i, j;
+    for (j = 0; j < base_line_data[0].length; j++) {
       sum = 0;
-      for (var i = 0; i < base_line_data.length; i++) {
+      for (i = 0; i < base_line_data.length; i++) {
         if (this.options.stream_line_smoothing == false) {
           sum += base_line_data[i][j];
         } else {
@@ -232,27 +236,33 @@ Grafico.StreamGraph = Class.create(Grafico.StackGraph, {
       if (this.options.stream_line_smoothing == false) {
         base_line[j] = -sum / 2;
       } else {
-  	    base_line[j] = -sum / (base_line_data.length + 1);
+        base_line[j] = -sum / (base_line_data.length + 1);
       }
     }
 
     var base_line_min = base_line.min();
-    for(var i = 0; i < base_line.length; i++) base_line[i] -= base_line_min;
+    for (i = 0; i < base_line.length; i++) {
+      base_line[i] -= base_line_min;
+    }
 
     this.base_line = base_line;
   },
 
   stackData: function (stacked_data) {
+    var i,j;
+    
     if (this.options.stream_smart_insertion) {
       stacked_data = $A(stacked_data);
       stacked_data.each(function(data_set) {
-        var i = 0;
-        while(i < data_set[1].length && data_set[1][i] <= 0.0000001) i++;
+        i = 0;
+        while (i < data_set[1].length && data_set[1][i] <= 0.0000001) {
+          i++;
+        }
         data_set[2] = i;
       });
 
       var sorted_data = stacked_data.sortBy(function(data_set) {
-      	return data_set[2];
+        return data_set[2];
       });
 
       var final_data = [];
@@ -267,7 +277,9 @@ Grafico.StreamGraph = Class.create(Grafico.StackGraph, {
       });
 
       stacked_data = $H();
-      final_data.each(function(data_set) {stacked_data.set(data_set[0], data_set[1]); });
+      final_data.each(function(data_set) {
+        stacked_data.set(data_set[0], data_set[1]);
+      });
     }
 
     this.real_data = this.deepCopy(stacked_data);
@@ -278,12 +290,12 @@ Grafico.StreamGraph = Class.create(Grafico.StackGraph, {
         return data_set[1];
       });
 
-    for (var j = 0; j < stacked_data_array[0].length; j++) {
-  	  stacked_data_array[stacked_data_array.length - 1][j] += this.base_line[j];
+    for (j = 0; j < stacked_data_array[0].length; j++) {
+      stacked_data_array[stacked_data_array.length - 1][j] += this.base_line[j];
     }
 
-    for (var i = stacked_data_array.length - 2; i >= 0; i--) {
-      for(var j = 0; j < stacked_data_array[0].length; j++) {
+    for (i = stacked_data_array.length - 2; i >= 0; i--) {
+      for (j = 0; j < stacked_data_array[0].length; j++) {
         stacked_data_array[i][j] += stacked_data_array[i + 1][j];
       }
     }
@@ -292,7 +304,7 @@ Grafico.StreamGraph = Class.create(Grafico.StackGraph, {
   },
 
   drawPlot: function (index, cursor, x, y, color, coords, datalabel, element, graphindex, dontdraw) {
-    if(this.options.datalabels && !dontdraw) {
+    if (this.options.datalabels && !dontdraw) {
       var real_data = this.getNormalizedRealData();
       var best_positions = this.bestMarkerPositions();
 
@@ -338,9 +350,9 @@ Grafico.StreamGraph = Class.create(Grafico.StackGraph, {
       var hoverSet = this.paper.set(),
           textpadding = 4,
           text = this.paper.text(x, y - 2 * textpadding + this.options.font_size / 2, datalabel).attr(
-			{'font-size': this.options.font_size,
-				fill: this.options.hover_text_color,
-				opacity: 1}),
+      {'font-size': this.options.font_size,
+        fill: this.options.hover_text_color,
+        opacity: 1}),
           textbox = text.getBBox(),
           roundRect = this.drawRoundRect(text, textbox, textpadding);
 
