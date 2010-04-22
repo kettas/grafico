@@ -120,7 +120,7 @@ Grafico.Normaliser = Class.create({
     }
 
     // Add some headroom to the bottom
-    if (this.min <= 0) {
+    if (this.min < 0) {
       graphmin = graphmin - margin;
     } else {
       graphmin = [graphmin - margin, 0].max();
@@ -153,32 +153,39 @@ Grafico.Normaliser = Class.create({
 
   niceNumber: function(x, round) {
     var exp = Math.floor(Math.LOG10E * Math.log(x)), // exponent of x
-        f   = x / Math.pow(10, exp), // fractional part of x
-        nf; // nice, rounded fraction
+        p, f, nf;
+
+    // Fix for inaccuracies calculating negative powers
+    if (exp < 0) {
+      p = parseFloat(Math.pow(10, exp).toFixed(Math.abs(exp)));
+    } else {
+      p = Math.pow(10, exp);
+    }
+    f = x / p
 
     if (round) {
       if (f < 1.5) {
-        nf = 1.0;
+        nf = 1;
       } else if (f < 3) {
-        nf = 2.0;
+        nf = 2;
       } else if (f < 7) {
-        nf = 5.0;
+        nf = 5;
       } else {
-        nf = 10.0;
+        nf = 10;
       }
     } else {
       if (f <= 1) {
-        nf = 1.0;
+        nf = 1;
       } else if (f <= 2) {
-        nf = 2.0;
+        nf = 2;
       } else if (f <= 5) {
-        nf = 5.0;
+        nf = 5;
       } else {
-        nf = 10.0;
+        nf = 10;
       }
     }
 
-    return nf * Math.pow(10, exp);
+    return nf * p;
   },
 
   roundToOrigin: function (value, offset) {
@@ -188,7 +195,6 @@ Grafico.Normaliser = Class.create({
     offset = offset || 1;
     multiplier = Math.pow(10, -offset);
     rounded_value = Math.round(value * multiplier) / multiplier;
-
     return (rounded_value > this.min) ? this.roundToOrigin(value - this.step) : rounded_value;
   }
 });

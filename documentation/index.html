@@ -109,7 +109,6 @@
     <li>Opera (slow, has hover problems)</li>
   </ul>
 
-
   <h3>Notable additions</h3>
   <ul>
     <li><a href="http://wakoopa.com/menno">Menno van der Sman</a> provided a rake minifier script and a new normaliser</li>
@@ -117,9 +116,7 @@
     <li><a href="http://github.com/suranyami">David Parry</a> provided Stacked bar charts and improvements to the grid drawing</li>
   </ul>
 
-
   <h3>Base graph options:</h3>
-
   <dl>
     <dt>background_color</dt>
     <dd>
@@ -133,23 +130,23 @@
     </dd>
     <dt>datalabels</dt>
     <dd>
-        for line graphs: Add a hover with the text, and append the text to the marker hover, per line (object, example: {workload:'My workload'})<br>
+        For line graphs: Add a hover with the text, and append the text to the marker hover, per line (object, example: {workload:'My workload'})<br>
         for bar graphs: append a text per bar.  (object, example: {workload: ["1","2","5"]})<br>
         <em>Default value: empty</em>
     </dd>
     <dt>draw_axis</dt>
     <dd>
-        show or hide the axis lines (boolean)<br>
+        Show or hide the axis lines (boolean)<br>
         <em>Default value: true</em>
     </dd>
     <dt>draw_hovers</dt>
     <dd>
-        show or hide hovers on line, area and stack charts (different from markers) (boolean)<br>
+        Show or hide hovers on line, area and stack charts (different from markers) (boolean)<br>
         <em>Default value: false</em>
     </dd>
     <dt>draw_focus</dt>
     <dd>
-        draw the focus lines on graphs with a non-zero starting point (boolean)<br>
+        Draw the focus lines on graphs with a non-zero starting point (boolean)<br>
         <em>Default value: true</em>
     </dd>
     <dt>font_size</dt>
@@ -159,7 +156,7 @@
     </dd>
     <dt>grid</dt>
     <dd>
-        draw a grid or not (boolean)<br>
+        Draw a grid or not (boolean)<br>
         <em>Default value: true</em>
     </dd>
     <dt>grid_color</dt>
@@ -174,12 +171,12 @@
     </dd>
     <dt>hover_color</dt>
     <dd>
-        color a bar or line should fade to on hover (string, example: "#fff")<br>
+        Color a bar or line should fade to on hover (string, example: "#fff")<br>
         <em>Default value: empty</em>
     </dd>
     <dt>hover_text_color</dt>
     <dd>
-        the color of the text in the hovers (string, example: "#fff")<br>
+        The color of the text in the hovers (string, example: "#fff")<br>
         <em>Default value: "#fff"</em>
     </dd>
     <dt>labels</dt>
@@ -194,12 +191,12 @@
     </dd>
     <dt>label_max_size</dt>
     <dd>
-        if set, labels will be truncated to that number and an &hellip; will be added. (number, int)<br>
+        If set, labels will be truncated to that number and an &hellip; will be added. (number, int)<br>
         <em>Default value: false </em>
     </dd>
     <dt>label_rotation</dt>
     <dd>
-        rotate the horizontal labels, in degrees. known limitation: it rotates around the center of the label (number)<br>
+        Rotate the horizontal labels, in degrees. known limitation: it rotates around the center of the label (number)<br>
         <em>Default value: 0</em>
     </dd>
     <dt>left_padding</dt>
@@ -249,7 +246,7 @@
     </dd>
     <dt>vertical_label_unit</dt>
     <dd>
-        append a unit to the vertical axis and text in the hover (string)<br>
+        Append a unit to the vertical axis and text in the hover (string)<br>
         <em>Default value: empty</em>
     </dd>
     <dt>watermark</dt>
@@ -259,7 +256,7 @@
     </dd>
     <dt>watermark_location</dt>
     <dd>
-        where the watermark should be placed. default is the bottom right, can be placed in the center with "middle" (string)<br>
+        Where the watermark should be placed. default is the bottom right, can be placed in the center with "middle" (string)<br>
         <em>Default value: bottom right</em>
     </dd>
     <dt>width</dt>
@@ -273,17 +270,17 @@
   <p><strong>Line graph with the default rendering (no options):</strong></p>
 
   <div id="linegraph" class="example"></div>
-  <pre><code>   var linegraph = new Grafico.LineGraph($('linegraph'),{ workload: [8, 10, 6, 12, 7, 6, 9] });</code></pre>
+  <pre><code>var linegraph = new Grafico.LineGraph($('linegraph'), { workload: [8, 10, 6, 12, 7, 6, 9] });</code></pre>
   <script>
   Event.observe(window, 'load', function() {
-    var linegraph = new Grafico.LineGraph($('linegraph'),{ workload: [8, 10, 6, 12, 7, 6, 9] });
+    var linegraph = new Grafico.LineGraph($('linegraph'), { workload: [8, 10, 6, 12, 7, 6, 9] });
   });
   </script>
 
   <p style="clear:both"><strong>Line graph with custom options:</strong></p>
 
   <div id="linegraph2" class="example"></div>
-  <pre><code>var linegraph2 = new Grafico.LineGraph($('linegraph2'),{ workload: [0, 0, 8, 10, 6, 12, 7, 6, 9] },
+  <pre><code>var linegraph2 = new Grafico.LineGraph($('linegraph2'), { workload: [0, 0, 8, 10, 6, 12, 7] },
 {
   grid :                  true,
   plot_padding :          0,
@@ -293,20 +290,20 @@
   label_rotation :        -30,
   font_size :             11,
   vertical_label_unit :   "hr",
-  colors :               {workload: '#4b80b6'},
-  background_color :     "#fff",
-  label_color :          "#444",
-  grid_color :           "#ccf",
+  colors :                {workload: '#4b80b6'},
+  background_color :      "#fff",
+  label_color :           "#444",
+  grid_color :            "#ccf",
   markers :               "value",
   meanline :              { 'stroke-width': '2px', stroke: '#000' },
   draw_axis :             false,
-  labels :                ['mon', '', 'wed', '', 'fri', '', 'sun',],
+  labels :                ['mon', '', 'wed', '', 'fri', '', 'sun'],
   hide_empty_label_grid : true,
   datalabels :            {workload:'My workload'},
 });</code></pre>
   <script>
   Event.observe(window, 'load', function() {
-    var linegraph2 = new Grafico.LineGraph($('linegraph2'),{ workload: [0, 0, 8, 10, 6, 12, 7, 6, 9] },
+    var linegraph2 = new Grafico.LineGraph($('linegraph2'),{ workload: [0, 0, 8, 10, 6, 12, 7] },
     {
       grid :                  true,
       plot_padding :          0,
@@ -316,21 +313,22 @@
       label_rotation :        -30,
       font_size :             11,
       vertical_label_unit :   "hr",
-      colors :               {workload: '#4b80b6'},
-      background_color :     "#fff",
-      label_color :          "#444",
-      grid_color :           "#ccf",
+      colors :                {workload: '#4b80b6'},
+      background_color :      "#fff",
+      label_color :           "#444",
+      grid_color :            "#ccf",
       markers :               "value",
       meanline :              { 'stroke-width': '2px', stroke: '#000' },
       draw_axis :             false,
-      labels :                ['mon', '', 'wed', '', 'fri', '', 'sun',],
+      labels :                ['mon', '', 'wed', '', 'fri', '', 'sun'],
       hide_empty_label_grid : true,
       datalabels :            {workload:'My workload'},
     });
   });
   </script>
 
-<p style="clear:both"><strong>Line graph with multiple lines and a watermark:</strong></p>
+  <p style="clear:both"><strong>Line graph with multiple lines and a watermark:</strong></p>
+
   <div id="linegraph3" class="example"></div>
   <pre><code>var linegraph3 = new Grafico.LineGraph($('linegraph3'),
 {
@@ -340,15 +338,15 @@
 },
 {
   markers:            "circle",
-  hover_color:       "#000",
-  hover_text_color : "#fff",
-  watermark : "Screenshot.png",
-  watermark_location : "middle",
-  draw_hovers : true,
+  hover_color:        "#000",
+  hover_text_color:   "#fff",
+  watermark:          "Screenshot.png",
+  watermark_location: "middle",
+  draw_hovers:        true,
   datalabels: {
-    workload:       "My workload",
-    your_workload:  "Your workload",
-    his_workload:   "His workload"
+    workload:         "My workload",
+    your_workload:    "Your workload",
+    his_workload:     "His workload"
   }
 });</code></pre>
   <script>
@@ -363,9 +361,9 @@
         markers: "circle",
         hover_color: "#000",
         hover_text_color: "#fff",
-        watermark : "Screenshot.png",
-        watermark_location : "middle",
-        draw_hovers : true,
+        watermark: "Screenshot.png",
+        watermark_location: "middle",
+        draw_hovers: true,
         datalabels: {
           workload:       "My workload",
           your_workload:  "Your workload",
@@ -375,8 +373,7 @@
   });
   </script>
 
-<p style="clear:both"><strong>Line graph with multiple lines and negative values:</strong></p>
-
+  <p style="clear:both"><strong>Line graph with multiple lines and negative values:</strong></p>
 
   <div id="linegraph4" class="example"></div>
   <pre><code>var linegraph4 = new Grafico.LineGraph($('linegraph4'),
@@ -395,12 +392,14 @@
       });
   });
   </script>
-<p style="clear:both">.</p>
+
+  <p style="clear:both">.</p>
+
   <h3>Line graph options:</h3>
   <dl>
     <dt>curve_amount</dt>
     <dd>
-      specify the curvature of linegraphs. 0 is hard edges (number)<br />
+      Specify the curvature of linegraphs. 0 is hard edges (number)<br />
       <em>Default value: 10</em>
     </dd>
     <dt>markers</dt>
@@ -420,7 +419,7 @@
     </dd>
     <dt>hide_empty_label_grid</dt>
     <dd>
-        hide the vertical gridlines for all empty label on the horizontal axis. (boolean)<br>
+        Hide the vertical gridlines for all empty label on the horizontal axis. (boolean)<br>
         <em>Default value: false</em>
     </dd>
     <dt>start_at_zero</dt>
@@ -430,7 +429,7 @@
     </dd>
     <dt>stroke_width</dt>
     <dd>
-        specify the width of the lines in pixels (number)<br />
+        Specify the width of the lines in pixels (number)<br />
         <em>Default value: 5</em>
     </dd>
   </dl>
@@ -440,14 +439,14 @@
     <p><strong>Area graph with the default rendering (no options):</strong></p>
 
     <div id="areagraph" class="example"></div>
-    <pre><code>var areagraph = new Grafico.AreaGraph($('areagraph'),{ workload: [8, 10, 6, 12, 7, 6, 9] });</code></pre>
+    <pre><code>var areagraph = new Grafico.AreaGraph($('areagraph'), { workload: [8, 10, 6, 12, 7, 6, 9] });</code></pre>
     <script>
   Event.observe(window, 'load', function() {
-      var areagraph = new Grafico.AreaGraph($('areagraph'),{ workload: [8, 10, 6, 12, 7, 6, 9] });
+      var areagraph = new Grafico.AreaGraph($('areagraph'), { workload: [8, 10, 6, 12, 7, 6, 9] });
     });
   </script>
 
-      <p style="clear:both"><strong>Area graph with custom options:</strong></p>
+  <p style="clear:both"><strong>Area graph with custom options:</strong></p>
 
   <div id="areagraph2" class="example"></div>
   <pre><code>var areagraph2 = new Grafico.AreaGraph($('areagraph2'),
@@ -458,15 +457,15 @@
   plot_padding :          0,
   font_size :             11,
   vertical_label_unit :   "hr",
-  colors :               {workload: '#4b80b6'},
-  background_color :     "#fff",
-  label_color :          "#444",
-  grid_color :           "#ccf",
+  colors :                { workload: '#4b80b6' },
+  background_color :      "#fff",
+  label_color :           "#444",
+  grid_color :            "#ccf",
   markers :               "value",
   meanline :              { 'stroke-width': '2px', stroke: '#000' },
   draw_axis :             false,
   labels :                ['monday', '', 'wednesday', '', 'friday', '', 'sunday'],
-  datalabels :            {workload:'My workload'},
+  datalabels :            { workload: 'My workload' },
   label_max_size :        4
 });</code></pre>
   <script>
@@ -478,27 +477,28 @@
       plot_padding :          0,
       font_size :             11,
       vertical_label_unit :   "hr",
-      colors :               {workload: '#4b80b6'},
-      background_color :     "#fff",
-      label_color :          "#444",
-      grid_color :           "#ccf",
+      colors :                {workload: '#4b80b6'},
+      background_color :      "#fff",
+      label_color :           "#444",
+      grid_color :            "#ccf",
       markers :               "value",
       meanline :              { 'stroke-width': '2px', stroke: '#000' },
       draw_axis :             false,
       labels :                ['monday', '', 'wednesday', '', 'friday', '', 'sunday'],
-      datalabels :            {workload:'My workload'},
+      datalabels :            {workload: 'My workload'},
       label_max_size : 4
     });
   });
   </script>
 
-<p style="clear:both"><strong>Area graph with multiple areas:</strong></p>
+  <p style="clear:both"><strong>Area graph with multiple areas:</strong></p>
+
   <div id="areagraph3" class="example"></div>
   <pre><code>var areagraph3 = new Grafico.AreaGraph($('areagraph3'),
 {
-  workload:       [8, 10, 6, 12,7, 6, 9],
-  your_workload:  [6, 8,  4, 8, 12,6, 2],
-  his_workload:   [2, 9,  12,7, 8, 9, 8]
+  workload:       [8, 10,  6, 12,  7, 6, 9],
+  your_workload:  [6,  8,  4,  8, 12, 6, 2],
+  his_workload:   [2,  9, 12,  7,  8, 9, 8]
 });</code></pre>
   <script>
   Event.observe(window, 'load', function() {
@@ -510,13 +510,15 @@
       });
   });
   </script>
-<p style="clear:both"><strong>Area graph with multiple areas and custom options:</strong></p>
+
+  <p style="clear:both"><strong>Area graph with multiple areas and custom options:</strong></p>
+
   <div id="areagraph4" class="example"></div>
   <pre><code>var areagraph4 = new Grafico.AreaGraph($('areagraph4'),
 {
-  workload:       [8, 10, 6, 12,7, 6, 9],
-  your_workload:  [6, 8,  4, 8, 12,6, 2],
-  his_workload:   [2, 9,  12,7, 8, 9, 8]
+  workload:       [8, 10,  6, 12,  7, 6, 9],
+  your_workload:  [6,  8,  4,  8, 12, 6, 2],
+  his_workload:   [2,  9, 12,  7,  8, 9, 8]
 },
 {
   markers :                 "value",
@@ -526,14 +528,14 @@
   stroke_width :            5,
   show_vertical_labels :    false,
   show_horizontal_labels :  false,
-  hover_color :            "#000",
-  hover_text_color :       "#fff",
+  hover_color :             "#000",
+  hover_text_color :        "#fff",
   datalabels : {
     workload:       "My workload",
     your_workload:  "Your workload",
     his_workload:   "His workload"
   }
-      });</code></pre>
+});</code></pre>
   <script>
   Event.observe(window, 'load', function() {
     var areagraph4 = new Grafico.AreaGraph($('areagraph4'),
@@ -560,11 +562,12 @@
       });
   });
   </script>
-    <h3>Area graph options</h3>
+
+  <h3>Area graph options</h3>
   <dl>
     <dt>area_opacity</dt>
     <dd>
-        set a specific opacity for the areas. If none is given, single areas will be opaque, and multiple will get an opacity of 1.5/number-of-areas. (number between 0 and 1)<br>
+        Set a specific opacity for the areas. If none is given, single areas will be opaque, and multiple will get an opacity of 1.5/number-of-areas. (number between 0 and 1)<br>
         <em>Default value: false</em>
     </dd>
     <dt>markers</dt>
@@ -584,7 +587,7 @@
     </dd>
     <dt>hide_empty_label_grid</dt>
     <dd>
-        hide the vertical gridlines for all empty label on the horizontal axis. (boolean)<br>
+        Hide the vertical gridlines for all empty label on the horizontal axis. (boolean)<br>
         <em>Default value: false</em>
     </dd>
     <dt>start_at_zero</dt>
@@ -594,20 +597,21 @@
     </dd>
     <dt>stroke_width</dt>
     <dd>
-        specify the width of the lines in pixels (number)<br />
+        Specify the width of the lines in pixels (number)<br />
         <em>Default value: 0</em>
     </dd>
   </dl>
   <h2 id="stack">Stacked area graphs</h2>
-    <p>Stacked area graphs only support positive ranges.</p>
+  <p>Stacked area graphs only support positive ranges.</p>
 
   <p style="clear:both"><strong>Stack graph:</strong></p>
+
   <div id="stackgraph" class="example"></div>
   <pre><code>var stackgraph = new Grafico.StackGraph($('stackgraph'),
 {
-  workload:       [8, 10, 6, 1,7, 6, 9],
-  your_workload:  [6, 8,  4, 1, 12,6, 2],
-  his_workload:   [2, 9,  12,2, 8, 9, 8]
+  workload:       [8, 10,  6, 1,  7, 6, 9],
+  your_workload:  [6,  8,  4, 1, 12, 6, 2],
+  his_workload:   [2,  9, 12, 2,  8, 9, 8]
 });</code></pre>
   <script>
   Event.observe(window, 'load', function() {
@@ -624,16 +628,16 @@
   <div id="stackgraph2" class="example"></div>
   <pre><code>var stackgraph2 = new Grafico.StackGraph($('stackgraph2'),
 {
-  workload:       [8, 10, 6, 1,7, 6, 9],
-  your_workload:  [6, 8,  4, 1, 12,6, 2],
-  his_workload:   [2, 9,  12,2, 8, 9, 8]
+  workload:       [8, 10,  6, 1,  7, 6, 9],
+  your_workload:  [6,  8,  4, 1, 12, 6, 2],
+  his_workload:   [2,  9, 12, 2,  8, 9, 8]
 },
 {
   markers :           "value",
   draw_axis :         false,
   plot_padding :      0,
-  hover_text_color : "#fff",
-  background_color : "#fff",
+  hover_text_color :  "#fff",
+  background_color :  "#fff",
   datalabels: {
     workload:       "My workload",
     your_workload:  "Your workload",
@@ -644,9 +648,9 @@
   Event.observe(window, 'load', function() {
     var stackgraph2 = new Grafico.StackGraph($('stackgraph2'),
       {
-      workload:       [8, 10, 6, 1,7, 6, 9],
-      your_workload:  [6, 8,  4, 1, 12,6, 2],
-      his_workload:   [2, 9,  12,2, 8, 9, 8]
+      workload:       [8, 10,  6, 1,  7, 6, 9],
+      your_workload:  [6,  8,  4, 1, 12, 6, 2],
+      his_workload:   [2,  9, 12, 2,  8, 9, 8]
       },
       {
         markers : "value",
@@ -667,9 +671,9 @@
   <div id="stackgraph3" class="example"></div>
   <pre><code>var stackgraph3 = new Grafico.StackGraph($('stackgraph3'),
 {
-  workload:       [8, 10, 6, 1,7, 6, 9],
-  your_workload:  [6, 8,  4, 1, 12,6, 2],
-  his_workload:   [2, 9,  12,2, 8, 9, 8]
+  workload:       [8, 10,  6, 1,  7, 6, 9],
+  your_workload:  [6,  8,  4, 1, 12, 6, 2],
+  his_workload:   [2,  9, 12, 2,  8, 9, 8]
 },
 {
   stacked_fill : false,
@@ -708,12 +712,12 @@
     </dd>
     <dt>hide_empty_label_grid</dt>
     <dd>
-        hide the vertical gridlines for all empty label on the horizontal axis. (boolean)<br>
+        Hide the vertical gridlines for all empty label on the horizontal axis. (boolean)<br>
         <em>Default value: false</em>
     </dd>
     <dt>stacked_fill</dt>
     <dd>
-        specify if the stacked areas should be filled areas or lines (boolean)<br>
+        Specify if the stacked areas should be filled areas or lines (boolean)<br>
         <em>Default value: true</em>
     </dd>
     <dt>start_at_zero</dt>
@@ -723,7 +727,7 @@
     </dd>
     <dt>stroke_width</dt>
     <dd>
-        specify the width of the lines in pixels, only used if stacked_fill is false. (number)<br />
+        Specify the width of the lines in pixels, only used if stacked_fill is false. (number)<br />
         <em>Default value: 5</em>
     </dd>
   </dl>
@@ -736,17 +740,17 @@
   <div id="streamgraph" class="example"></div>
   <pre><code>var streamgraph = new Grafico.StreamGraph($('streamgraph'),
 {
-  workload:       [8, 10, 6, 1,7, 6, 9],
-  your_workload:  [6, 8,  4, 1, 12,6, 2],
-  his_workload:   [2, 9,  12,2, 8, 9, 8]
+  workload:       [8, 10,  6, 1,  7, 6, 9],
+  your_workload:  [6,  8,  4, 1, 12, 6, 2],
+  his_workload:   [2,  9, 12, 2,  8, 9, 8]
 });</code></pre>
   <script>
   Event.observe(window, 'load', function() {
     var streamgraph = new Grafico.StreamGraph($('streamgraph'),
       {
-      workload:       [8, 10, 6, 1,7, 6, 9],
-      your_workload:  [6, 8,  4, 1, 12,6, 2],
-      his_workload:   [2, 9,  12,2, 8, 9, 8]
+      workload:       [8, 10,  6, 1,  7, 6, 9],
+      your_workload:  [6,  8,  4, 1, 12, 6, 2],
+      his_workload:   [2,  9, 12, 2,  8, 9, 8]
       });
   });
   </script>
@@ -756,8 +760,8 @@
   <pre><code>var streamgraph2 = new Grafico.StreamGraph($('streamgraph2'),
 {
   ie6:            [10, 9, 5, 3, 2, 1, 1],
-  firefox:        [0,  2, 4, 4, 5, 5, 5],
-  chrome:         [0,  0, 0, 0, 1, 3, 3]
+  firefox:        [ 0, 2, 4, 4, 5, 5, 5],
+  chrome:         [ 0, 0, 0, 0, 1, 3, 3]
 },
 {
   datalabels: {
@@ -771,8 +775,8 @@
     var streamgraph = new Grafico.StreamGraph($('streamgraph2'),
       {
       ie:             [10, 9, 5, 3, 2, 1, 1],
-      firefox:        [0,  2, 4, 4, 5, 5, 5],
-      chrome:         [0,  0, 0, 0, 1, 3, 3],
+      firefox:        [ 0, 2, 4, 4, 5, 5, 5],
+      chrome:         [ 0, 0, 0, 0, 1, 3, 3],
       },
       {
         datalabels: {
@@ -875,12 +879,12 @@
 [31, 12, 12, 10, 6, 4, 26],
 {
   labels :              ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul"],
-  color :              '#4b80b6',
+  color :               '#4b80b6',
   meanline :            true,
   label_rotation :      -30,
   vertical_label_unit : "%",
-  bargraph_lastcolor : "#666666",
-  hover_color :        "#006677",
+  bargraph_lastcolor :  "#666666",
+  hover_color :         "#006677",
   datalabels :          {one: ["January", "February", "March", "April", "May", "June", "July"]}
 });</code></pre>
   <script>
@@ -905,10 +909,10 @@
   <pre><code>var bargraph = new Grafico.BarGraph($('bargraph3'),
 [31, 12, -12, -10, 6, -4, 26],
 {
-  labels:                   "Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul"],
-  color:                   '#4b80b6',
+  labels:                   ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul"],
+  color:                    '#4b80b6',
   meanline :                true,
-  hover_color :            "#006677",
+  hover_color :             "#006677",
   bargraph_negativecolor : "#660000",
   datalabels :              {one: ["January", "February", "March", "April", "May", "June", "July"]}
 });</code></pre>
@@ -927,16 +931,16 @@
   });
   </script>
 
-    <h3>Bar graph options</h3>
+  <h3>Bar graph options</h3>
   <dl>
     <dt>bargraph_lastcolor</dt>
     <dd>
-        select a different color for the last bar in a bargraph (string, example: "#fff")<br />
+        Select a different color for the last bar in a bargraph (string, example: "#fff")<br />
         <em>Default value: false</em>
     </dd>
     <dt>bargraph_negativecolor</dt>
     <dd>
-        select a different color for negative values in a bargraph (string, example: "#fff")<br />
+        Select a different color for negative values in a bargraph (string, example: "#fff")<br />
         <em>Default value: false</em>
     </dd>
     <dt>color</dt>
@@ -951,8 +955,8 @@
   <p style="clear:both"><strong>Stacked Bar graph:</strong></p>
   <div id="stackbargraph" class="example"></div>
   <pre><code>var stackbargraph = new Grafico.StackedBarGraph($('stackbargraph'), {
-  a: [31, 12, 12, 10, 6, 4, 26],
-  b: [20, 4,  12, 21, 15,16,5 ]
+  a: [31, 12, 12, 10,  6,  4, 26],
+  b: [20,  4, 12, 21, 15, 16,  5]
 });</code></pre>
   <script>
   Event.observe(window, 'load', function() {
@@ -967,23 +971,23 @@ var stackbargraph = new Grafico.StackedBarGraph($('stackbargraph'), {
   <div id="stackbargraph2" class="example"></div>
   <pre><code>var stackedbargraph2 = new Grafico.StackedBarGraph($('stackbargraph2'),
   {
-    workload:       [8, 10, 6, 12, 7, 6, 9],
-    your_workload:  [6, 8, 4, 8, 12, 6, 2],
-    his_workload:   [2, 9, 12, 7, 8, 9, 8]
+    workload:       [8, 10,  6, 12,  7, 6, 9],
+    your_workload:  [6,  8,  4,  8, 12, 6, 2],
+    his_workload:   [2,  9, 12,  7,  8, 9, 8]
   },
   {
     labels:               ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul"],
     colors:               {
-      workload: '#f60',
-      your_workload: '#5f3',
-      his_workload: '#08c'
+      workload:       '#f60',
+      your_workload:  '#5f3',
+      his_workload:   '#08c'
     },
     show_ticks:           false,
     hover_color:          "#CC0000",
     datalabels:           {
-      workload: ["8hrs", "10hrs", "6hrs", "12hrs", "7hrs", "6hrs", "9hrs"],
-      your_workload: ["6hrs", "8hrs", "4hrs", "8hrs", "12hrs", "6hrs", "2hrs"],
-      his_workload: ["2hrs", "9hrs", "12hrs", "7hrs", "8hrs", "9hrs", "8hrs"]
+      workload:       ["8hrs", "10hrs", "6hrs", "12hrs", "7hrs",  "6hrs", "9hrs"],
+      your_workload:  ["6hrs", "8hrs",  "4hrs", "8hrs",  "12hrs", "6hrs", "2hrs"],
+      his_workload:   ["2hrs", "9hrs", "12hrs", "7hrs",  "8hrs",  "9hrs", "8hrs"]
     },
   });
 });</code></pre>
@@ -1013,10 +1017,8 @@ var stackbargraph = new Grafico.StackedBarGraph($('stackbargraph'), {
   });
   </script>
 
-
-
-    <h3>Stacked Bar graph options</h3>
-    <p> no specific options.</p>
+  <h3>Stacked Bar graph options</h3>
+  <p>no specific options.</p>
 
   <h2 id="horizontalbar">Horizontal bar graphs</h2>
   <p style="clear:both"><strong>Horizontal Bar graph:</strong></p>
@@ -1091,12 +1093,12 @@ var stackbargraph = new Grafico.StackedBarGraph($('stackbargraph'), {
   <dl>
     <dt>bargraph_lastcolor</dt>
     <dd>
-        select a different color for the last bar in a bargraph (string, example: "#fff")<br />
+        Select a different color for the last bar in a bargraph (string, example: "#fff")<br />
         <em>Default value: false</em>
     </dd>
     <dt>bargraph_negativecolor</dt>
     <dd>
-        select a different color for negative values in a bargraph (string, example: "#fff")<br />
+        Select a different color for negative values in a bargraph (string, example: "#fff")<br />
         <em>Default value: false</em>
     </dd>
     <dt>color</dt>
@@ -1106,7 +1108,7 @@ var stackbargraph = new Grafico.StackedBarGraph($('stackbargraph'), {
     </dd>
     <dt>horizontal_rounded</dt>
     <dd>
-        round the ends of horizontal bar graphs (boolean)<br />
+        Round the ends of horizontal bar graphs (boolean)<br />
         <em>Default value: false</em>
     </dd>
   </dl>
@@ -1122,11 +1124,11 @@ var stackbargraph = new Grafico.StackedBarGraph($('stackbargraph'), {
   <pre><code>var sparkline2 = new Grafico.SparkLine($('sparkline2'),
 [30, 12, 12, 10, 6, 4, 26],
 {
-  stroke_width :      3,
-  color :            '#4b80b6',
-  highlight :         {index: 2, color: "#f00"},
-  acceptable_range :  [10,20],
-  background_color : "#ddd"
+  stroke_width:      3,
+  color:             '#4b80b6',
+  highlight:         { index: 2, color: "#f00" },
+  acceptable_range:  [10,20],
+  background_color:  "#ddd"
 });</code></pre>
   <script>
   Event.observe(window, 'load', function() {
@@ -1143,16 +1145,16 @@ var stackbargraph = new Grafico.StackedBarGraph($('stackbargraph'), {
 
   <p style="clear:both"><strong>Sparkline with negative values:</strong> <span id="sparkline3" class="sparkexample"></span>
   <pre><code>var sparkline = new Grafico.SparkLine($('sparkline3'),
-[30, 12, 12, 10, 6, 4, 26]
+[30, 12, -12, -10, 6, 4, 26]
 {
-  zeroline : true
+  zeroline: true
 });</code></pre>
   <script>
   Event.observe(window, 'load', function() {
     var sparkline3 = new Grafico.SparkLine($('sparkline3'),
     [30, 12, -12, -10, 6, 4, 26],
     {
-      zeroline : true
+      zeroline: true
     });
   });
   </script>
@@ -1185,17 +1187,17 @@ var stackbargraph = new Grafico.StackedBarGraph($('stackbargraph'), {
         <em>Default value: false, setting it to true will draw a 1px grey line.</em>
     </dd>
   </dl>
+
   <h2 id="sparkbar">Sparkbar</h2>
+
   <p style="clear:both"><strong>Sparkbar:</strong> <span id="sparkbar1" class="sparkexample"></span>
   <pre><code>var sparkbar = new Grafico.SparkBar($('sparkbar1'), [30, 12, 12, 10, 6, 4, 26]);</code></pre>
   <script>
   Event.observe(window, 'load', function() {
-    var sparkbar = new Grafico.SparkBar($('sparkbar1'), [30, 12, 12, 10, 6, 4, 26],
-    {
-      zeroline : true
-    });
+    var sparkbar = new Grafico.SparkBar($('sparkbar1'), [30, 12, 12, 10, 6, 4, 26]);
   });
   </script>
+
   <p style="clear:both"><strong>SparkBar with custom options:</strong> <span id="sparkbar2" class="sparkexample"></span>
   <pre><code>var sparkbar2 = new Grafico.SparkBar($('sparkbar2'),
 [30, 12, 12, 10, 6, 4, 26],

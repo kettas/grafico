@@ -130,6 +130,20 @@
       assertEqual( 0.5, normaliser.step);
       assertEqual(  90, normaliser.start_value);
       assertEqual(10.9, normaliser.range);
+    }},
+
+    test_bottom_headroom_stays_positive: function() { with(this) {
+      var normaliser = new Grafico.Normaliser([1, 50, 100, 0, 0]);
+      assertEqual( 10, normaliser.step);
+      assertEqual(  0, normaliser.start_value);
+      assertEqual(105, normaliser.range);
+    }},
+
+    test_top_headroom_stays_negative: function() { with(this) {
+      var normaliser = new Grafico.Normaliser([-1, -50, -100, 0, 0]);
+      assertEqual(  10, normaliser.step);
+      assertEqual(-100, normaliser.start_value);
+      assertEqual( 100, normaliser.range);
     }}
 
   });
