@@ -686,7 +686,11 @@ Grafico.BaseGraph = Class.create(Grafico.Base, {
         cursor.moveTo(parseInt(x, 10), parseInt(y, 10) + 0.5);
         cursor.lineTo(parseInt(x, 10) + y_offset(5), parseInt(y, 10) + 0.5 + x_offset(5));
       }
-      this.paper.text(x + font_offsets[0], y - 2 - font_offsets[1], label.toString()).attr(font_options);
+
+      if (label !== "") {
+        this.paper.text(x + font_offsets[0], y - 2 - font_offsets[1], label.toString()).attr(font_options);
+      }
+
       x = x + x_offset(step);
       y = y + y_offset(step);
     }.bind(this));
@@ -702,12 +706,12 @@ Grafico.BaseGraph = Class.create(Grafico.Base, {
   },
 
   drawHorizontalLabels: function () {
-    var extra_options = this.options.label_rotation ? {rotation:this.options.label_rotation, translation: -this.options.font_size + " 0"} : {},
+    var extra_options = this.options.label_rotation ? {rotation: this.options.label_rotation, translation: -this.options.font_size + " 0"} : {},
         labels = this.options.labels;
 
     if (this.options.label_max_size) {
       for (var i = 0; i < labels.length; i++) {
-        labels[i] = labels[i].truncate(this.options.label_max_size+1, "…");
+        labels[i] = labels[i].truncate(this.options.label_max_size + 1, "…");
       }
     }
 
