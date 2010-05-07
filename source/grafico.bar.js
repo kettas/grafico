@@ -57,7 +57,7 @@ Grafico.BarGraph = Class.create(Grafico.BaseGraph, {
       color2 = y < 0 ? negativecolor : color;
     }
 
-    var bargraph = this.paper.rect(x - (this.bar_width / 2), start_y, this.bar_width, y).attr({fill: color2, 'stroke-width': this.options.stroke_width, stroke : this.options.color});
+    var bargraph = this.paper.rect(x - (this.bar_width / 2), start_y, this.bar_width, y).attr({fill: color2, 'stroke-width': this.options.stroke_width, stroke : color2, 'stroke-opacity' : 0});
 
     if (y < 0) {
       bargraph.attr({height:-bargraph.attrs.height});
@@ -370,16 +370,15 @@ Grafico.HorizontalBarGraph = Class.create(Grafico.BarGraph, {
       }
 
       value = value / this.graph_width * (this.graph_width - offset);
-      bargraph = this.paper.rect(x, y, value, this.bar_width, horizontal_rounded).attr({fill: color2, 'stroke-width': 0, stroke : color2});
+      bargraph = this.paper.rect(x, y, value, this.bar_width, horizontal_rounded).attr({fill: color2, 'stroke-width': 0, stroke : color2, });
 
       if (value < 0) {
         bargraph.attr({width: -bargraph.attrs.width}).translate(value, 0);
       }
 
       if (horizontal_rounded) {
-        var bargraphset = this.paper.set();
-            bargraph2 = this.paper.rect(x, y, value - this.bar_width/2, this.bar_width);
-            bargraph2.attr({fill: color2, 'stroke-width': 0, stroke : color2});
+        var bargraphset = this.paper.set(),
+            bargraph2 = this.paper.rect(x, y, value - this.bar_width/2, this.bar_width).attr({fill: color2, 'stroke-width': 0, stroke : color2});
 
         bargraphset.push(bargraph2, bargraph);
 
