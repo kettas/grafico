@@ -370,7 +370,7 @@ Grafico.HorizontalBarGraph = Class.create(Grafico.BarGraph, {
       }
 
       value = value / this.graph_width * (this.graph_width - offset);
-      bargraph = this.paper.rect(x, y, value, this.bar_width, horizontal_rounded).attr({fill: color2, 'stroke-width': 0, stroke : color2, });
+      bargraph = this.paper.rect(x, y, value, this.bar_width, horizontal_rounded).attr({fill: color2, 'stroke-width': 0, stroke : color2, 'stroke-opacity' : 0});
 
       if (value < 0) {
         bargraph.attr({width: -bargraph.attrs.width}).translate(value, 0);
@@ -378,7 +378,7 @@ Grafico.HorizontalBarGraph = Class.create(Grafico.BarGraph, {
 
       if (horizontal_rounded) {
         var bargraphset = this.paper.set(),
-            bargraph2 = this.paper.rect(x, y, value - this.bar_width/2, this.bar_width).attr({fill: color2, 'stroke-width': 0, stroke : color2});
+            bargraph2 = this.paper.rect(x, y, value - this.bar_width/2, this.bar_width).attr({fill: color2, 'stroke-width': 0, stroke : color2, 'stroke-opacity' : 0});
 
         bargraphset.push(bargraph2, bargraph);
 
