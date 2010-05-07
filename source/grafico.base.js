@@ -211,7 +211,7 @@ Grafico.BaseGraph = Class.create(Grafico.Base, {
       show_vertical_labels:   true,
       show_ticks:             true,
       vertical_label_unit:    '',
-      background_color:      element.getStyle('backgroundColor'),
+      background_color:      '#fff',
       label_color:           '#000',                               // Label text color
       grid_color:            '#ccc',                               // Grid line color
       hover_text_color:      '#fff',                               // hover color
@@ -920,3 +920,4 @@ Raphael.el.cplineTo = function (x, y, w) {
 Raphael.el.andClose = function () {
   return this.attr({path: this.attrs.path + "z"});
 };
+
