@@ -88,8 +88,12 @@ Grafico.LineGraph = Class.create(Grafico.BaseGraph, {
           circle = this.paper.circle(x, y, this.options.marker_size).attr({ 'stroke-width': '1px', stroke: this.options.background_color, fill: color,opacity:0}),
           block = this.paper.rect(rectx, recty, rectw, recth).attr({fill:color, 'stroke-width': 0, stroke : color,opacity:0});
 
-      if (this.options.datalabels) {
-        datalabel = datalabel + ": " + currentvalue;
+			if (this.options.datalabels) {
+				if(typeof(datalabel) == 'function') {
+					datalabel = datalabel.call(this, index, currentvalue);
+				} else {
+        	datalabel = datalabel + ": " + currentvalue;
+				}
       } else {
         datalabel = "" + currentvalue;
       }
