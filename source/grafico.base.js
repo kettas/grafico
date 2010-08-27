@@ -205,27 +205,28 @@ Grafico.BaseGraph = Class.create(Grafico.Base, {
       grid:                   true,
       show_vertical_grid:     true,
       show_horizontal_grid:   true,
-      plot_padding:           10,                                   // Padding for the graph line/bar plots
-      font_size:              10,                                   // Label font size
+      plot_padding:           10,    // Padding for the graph line/bar plots
+      font_size:              10,    // Label font size
       show_horizontal_labels: true,
       show_vertical_labels:   true,
       show_ticks:             true,
       vertical_label_unit:    '',
       background_color:      '#fff',
-      label_color:           '#000',                               // Label text color
-      grid_color:            '#ccc',                               // Grid line color
-      hover_text_color:      '#fff',                               // hover color
-      markers:                false,                                // false, circle, value
+      label_color:           '#000', // Label text color
+      grid_color:            '#ccc', // Grid line color
+      hover_text_color:      '#fff', // hover color
+      markers:                false, // false, circle, value
       marker_size:            5,
       meanline:               false,
       padding_top:            20,
       draw_axis:              true,
-      datalabels:             '',                                    // interactive, filled with same # of elements as graph items.
-      hover_color:            '',                                    // hover color if there are datalabels
+      datalabels:             '',    // interactive, filled with same # of elements as graph items.
+      hover_color:            '',    // hover color if there are datalabels
+      hover_radius:           15,    // pixels minimum at the top and at the bottom of a line for hover activation
       watermark:              false,
-      watermark_location:     false,                                 // determine position of watermark. currently available is bottomright and middle
-      hide_empty_label_grid:  false,                                 // hide gridlines for labels with no value
-      left_padding:           false,                                  // set a standard leftpadding regardless of label width
+      watermark_location:     false, // determine position of watermark. currently available is bottomright and middle
+      hide_empty_label_grid:  false, // hide gridlines for labels with no value
+      left_padding:           false, // set a standard leftpadding regardless of label width
       label_rotation:         0,
       label_max_size:         false,
       focus_hint:             true,
