@@ -85,7 +85,7 @@ Grafico.LineGraph = Class.create(Grafico.BaseGraph, {
           recty  = y-[this.options.stroke_width/2, this.options.hover_radius].max(),
           rectw  = this.step,
           recth  = [this.options.stroke_width, this.options.hover_radius*2].max(),
-          circle = this.paper.circle(x, y, this.options.marker_size).attr({ 'stroke-width': '1px', stroke: this.options.background_color, fill: color,opacity:0}),
+          circle = this.paper.circle(x, y, this.options.marker_size == 0 ? [this.options.stroke_width*1.5, this.step].min() : this.options.marker_size).attr({ 'stroke-width': '1px', stroke: this.options.background_color, fill: color,opacity:0}),
           block  = this.paper.rect(rectx, recty, rectw, recth).attr({fill:color, 'stroke-width': 0, stroke : color,opacity:0});
 
       if (this.options.datalabels) {
