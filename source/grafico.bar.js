@@ -38,9 +38,19 @@ Grafico.BarGraph = Class.create(Grafico.BaseGraph, {
   },
 
   calculateStep: function () {
-    this.data_size = this.data_size === 1 ? 2 : this.data_size;
+    this.data_size = this.data_size == 1 ? 2 : this.data_size;
     return (this.graph_width - (this.options.plot_padding * 2) - (this.bar_padding * 2)) / (this.data_size - 1);
   },
+
+  longestDataSetLength: function () {
+    var length = 0;
+    this.data_sets.each(function (data_set) {
+      length = data_set[1].length > length ? data_set[1].length : length;
+    });
+    if(Prototype.Browser.IE) {length = length -1;}
+    return length;
+  },
+
 
   drawPlot: function (index, cursor, x, y, color, coords, datalabel, element) {
     var start_y = this.options.height - this.y_padding_bottom - (this.zero_value * (this.graph_height / this.y_label_count)),
@@ -49,7 +59,8 @@ Grafico.BarGraph = Class.create(Grafico.BaseGraph, {
         color2;
 
     x = x + this.bar_padding;
-    y = this.options.height - this.y_padding_bottom - y - (this.zero_value * (this.graph_height / this.y_label_count));
+
+    y = start_y - y;//this.options.height - this.y_padding_bottom - y - (this.zero_value * (this.graph_height / this.y_label_count));
 
     if (lastcolor && index === coords.length-1){
       color2 = lastcolor;
@@ -135,34 +146,35 @@ Grafico.BarGraph = Class.create(Grafico.BaseGraph, {
     var hover_color = this.options.hover_color || color,
         hoverSet = this.paper.set(),
         text,
-        hoverbar = this.paper.rect(x - (this.bar_width / 2), this.y_padding_top, this.bar_width, this.options.height);
+        hoverbar = this.paper.rect(x - (this.bar_width / 2), this.y_padding_top, this.bar_width, this.options.height).attr({fill: color, 'stroke-width': 0, stroke : color,opacity:0});;
 
-    datalabel = datalabel ? datalabel[index].toString() : '';
-    text = this.paper.text(bargraph.attrs.x + (this.bar_width / 2), bargraph.attrs.y - (this.options.font_size * 1.5), datalabel);
-    hoverbar.attr({fill: color, 'stroke-width': 0, stroke : color,opacity:0});
-    text.attr({'font-size': this.options.font_size, fill: this.options.hover_text_color, opacity: 1});
+    datalabel = datalabel && datalabel[index] ? datalabel[index].toString() : '';
+    if (datalabel) {
+      text = this.paper.text(bargraph.attrs.x + (this.bar_width / 2), bargraph.attrs.y - (this.options.font_size * 1.5), datalabel);
+      text.attr({'font-size': this.options.font_size, fill: this.options.hover_text_color, opacity: 1});
 
-    var textbox = text.getBBox(),
-        textpadding = 4,
-        roundRect= this.drawRoundRect(text, textbox, textpadding),
-        nib = this.drawNib(text, textbox, textpadding);
+      var textbox = text.getBBox(),
+          textpadding = 4,
+          roundRect= this.drawRoundRect(text, textbox, textpadding),
+          nib = this.drawNib(text, textbox, textpadding);
 
-    hoverSet.push(roundRect,nib,text).attr({opacity:0});
-    this.checkHoverPos({rect:roundRect,set:hoverSet,nib:nib});
-    this.globalHoverSet.push(hoverSet);
-    this.globalBlockSet.push(hoverbar);
+      hoverSet.push(roundRect,nib,text).attr({opacity:0});
+      this.checkHoverPos({rect:roundRect,set:hoverSet,nib:nib});
+      this.globalHoverSet.push(hoverSet);
+      this.globalBlockSet.push(hoverbar);
 
-    if (roundRect.attrs.y < 0) {
-      hoverSet.translate(0, 1 + (roundRect.attrs.y * -1));
+      if (roundRect.attrs.y < 0) {
+        hoverSet.translate(0, 1 + (roundRect.attrs.y * -1));
+      }
+
+      hoverbar.hover(function (event) {
+        bargraph.animate({fill: hover_color, stroke: hover_color}, 200);
+        hoverSet.animate({opacity: 1}, 200);
+      }, function (event) {
+        bargraph.animate({fill: color,stroke: color}, 200);
+        hoverSet.animate({opacity: 0}, 200);
+      });
     }
-
-    hoverbar.hover(function (event) {
-      bargraph.animate({fill: hover_color, stroke: hover_color}, 200);
-      hoverSet.animate({opacity: 1}, 200);
-    }, function (event) {
-      bargraph.animate({fill: color,stroke: color}, 200);
-      hoverSet.animate({opacity: 0}, 200);
-    });
   }
 });
 
@@ -377,9 +389,8 @@ Grafico.HorizontalBarGraph = Class.create(Grafico.BarGraph, {
       }
 
       if (horizontal_rounded) {
-        var bargraphset = this.paper.set();
-            bargraph2 = this.paper.rect(x, y, value - this.bar_width/2, this.bar_width);
-            bargraph2.attr({fill: color2, 'stroke-width': 0, stroke : color2});
+        var bargraphset = this.paper.set(),
+            bargraph2 = this.paper.rect(x, y, value - this.bar_width/2, this.bar_width).attr({fill: color2, 'stroke-width': 0, stroke : color2});
 
         bargraphset.push(bargraph2, bargraph);
 
