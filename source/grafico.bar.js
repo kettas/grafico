@@ -431,7 +431,7 @@ Grafico.HorizontalBarGraph = Class.create(Grafico.BarGraph, {
           if (horizontal_rounded) {
             bargraphset.animate({fill: hover_color, stroke: hover_color}, 200);
           } else {
-            bargraph.animate({fill: hover_color, stroke: over_color}, 200);
+            bargraph.animate({fill: hover_color, stroke: hover_color}, 200);
           }
           hoverSet.animate({opacity: 1}, 200);
         }, function (event) {
