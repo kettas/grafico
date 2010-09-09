@@ -47,7 +47,6 @@ Grafico.BarGraph = Class.create(Grafico.BaseGraph, {
     this.data_sets.each(function (data_set) {
       length = data_set[1].length > length ? data_set[1].length : length;
     });
-    if(Prototype.Browser.IE) {length = length -1;}
     return length;
   },
 
