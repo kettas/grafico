@@ -131,6 +131,7 @@
     <dt>datalabels</dt>
     <dd>
         For line graphs: Add a hover with the text, and append the text to the marker hover, per line (object, example: {workload:'My workload'})<br>
+		Can also be a function, to render custom labels, e.g. {workload:function(idx, value) { return ['mon', 'tue', 'wed', 'thu', 'fri', 'sat', 'sun'][idx] + " : " + value} }}
         for bar graphs: append a text per bar.  (object, example: {workload: ["1","2","5"]})<br>
         <em>Default value: empty</em>
     </dd>
@@ -299,7 +300,9 @@
   draw_axis :             false,
   labels :                ['mon', '', 'wed', '', 'fri', '', 'sun'],
   hide_empty_label_grid : true,
-  datalabels :            {workload:'My workload'},
+  datalabels :            {workload:function(idx, value) {
+	return ['mon', 'tue', 'wed', 'thu', 'fri', 'sat', 'sun'][idx] + " : " + value;
+  }},
 });</code></pre>
   <script>
   Event.observe(window, 'load', function() {
@@ -322,7 +325,7 @@
       draw_axis :             false,
       labels :                ['mon', '', 'wed', '', 'fri', '', 'sun'],
       hide_empty_label_grid : true,
-      datalabels :            {workload:'My workload'},
+      datalabels :            {workload:function(idx, value) { return ['mon', 'tue', 'wed', 'thu', 'fri', 'sat', 'sun'][idx] + " : " + value}},
     });
   });
   </script>
@@ -415,13 +418,19 @@
     <dt>marker_size</dt>
     <dd>
         The size of the marker (number)<br>
-        <em>Default value: 5</em>
+        <em>Default value: 0 (smartly chosen)</em>
     </dd>
     <dt>hide_empty_label_grid</dt>
     <dd>
         Hide the vertical gridlines for all empty label on the horizontal axis. (boolean)<br>
         <em>Default value: false</em>
     </dd>
+    <dt>hover_radius</dt>
+    <dd>
+        Set a default height in pixels that represent the activation zone for hover effect (int)<br>
+        <em>Default value: 15</em>
+    </dd>
+
     <dt>start_at_zero</dt>
     <dd>
         If false, Grafico will not start drawing untill the value of a line graph becomes more than zero. (boolean)<br>

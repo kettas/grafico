@@ -67,7 +67,7 @@ Grafico.LineGraph = Class.create(Grafico.BaseGraph, {
     index += this.options.odd_horizontal_offset>1 ? this.options.odd_horizontal_offset : 0;
     index -= this.options.stacked_fill || this.options.area ? 1 : 0;
 
-    var currentset = this.options.stacked ? this.real_data : this.data_sets,
+    var currentset   = this.options.stacked ? this.real_data : this.data_sets,
         currentvalue = currentset.collect(function (data_set) { return data_set[1][index]; })[graphindex];
 
     if (currentvalue) {
@@ -81,15 +81,19 @@ Grafico.LineGraph = Class.create(Grafico.BaseGraph, {
       ((this.options.stacked_fill||this.options.area) && index != -1) && //if it's stacked or an area and it's not the first
       typeof currentvalue != "undefined") { //if there is a current value
 
-      var rectx = x-(this.step/2),
-          recty = this.options.stacked ? y-(this.graph_height/18): y-(this.graph_height/6),
-          rectw = this.step,
-          recth = this.options.stacked ? this.graph_height/9     : this.graph_height/3,
-          circle = this.paper.circle(x, y, this.options.marker_size).attr({ 'stroke-width': '1px', stroke: this.options.background_color, fill: color,opacity:0}),
-          block = this.paper.rect(rectx, recty, rectw, recth).attr({fill:color, 'stroke-width': 0, stroke : color,opacity:0});
+      var rectx  = x-(this.step/2),
+          recty  = y-[this.options.stroke_width/2, this.options.hover_radius].max(),
+          rectw  = this.step,
+          recth  = [this.options.stroke_width, this.options.hover_radius*2].max(),
+          circle = this.paper.circle(x, y, this.options.marker_size == 0 ? [this.options.stroke_width*1.5, this.step].min() : this.options.marker_size).attr({ 'stroke-width': '1px', stroke: this.options.background_color, fill: color,opacity:0}),
+          block  = this.paper.rect(rectx, recty, rectw, recth).attr({fill:color, 'stroke-width': 0, stroke : color,opacity:0});
 
-      if (this.options.datalabels) {
-        datalabel = datalabel + ": " + currentvalue;
+			if (this.options.datalabels) {
+				if(typeof(datalabel) == 'function') {
+					datalabel = datalabel.call(this, index, currentvalue);
+				} else {
+        	datalabel = datalabel + ": " + currentvalue;
+				}
       } else {
         datalabel = "" + currentvalue;
       }
