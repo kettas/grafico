@@ -1275,14 +1275,14 @@ var stackbargraph = new Grafico.StackedBarGraph($('stackbargraph'), {
 
       <h2 id="sparkarea">Sparkarea</h2>
   <p style="clear:both"><strong>SparkArea:</strong> <span id="sparkarea1" class="sparkexample"></span>
-  <pre><code>var sparkarea = new Grafico.SparkLine($('sparkarea1'), [30, 12, 12, 10, 6, 4, 26, 12, 12, 10, 6, 4, 26, 12, 12, 10, 6, 4, 26, 12, 12, 10, 6, 4, 26, 12, 12, 10, 6, 4, 26, 12, 12, 10, 6, 4, 26, 12, 12, 10, 6, 4, 26, 12, 12, 10, 6, 4, 26]);</code></pre>
+  <pre><code>var sparkarea = new Grafico.SparkArea($('sparkarea1'), [30, 12, 12, 10, 6, 4, 26, 12, 12, 10, 6, 4, 26, 12, 12, 10, 6, 4, 26, 12, 12, 10, 6, 4, 26, 12, 12, 10, 6, 4, 26, 12, 12, 10, 6, 4, 26, 12, 12, 10, 6, 4, 26, 12, 12, 10, 6, 4, 26]);</code></pre>
   <script>
   Event.observe(window, 'load', function() {
     var sparkarea = new Grafico.SparkArea($('sparkarea1'), [-30, -12, -12, -10, -16, -14, -26, -12, 12, 10, 6, 4, 26, 12, 12, 10, 6, 4, 26, 12, 12, 10, 6, 4, 26, 12, 12, 10, 6, 4, 26, 12, 12, 10, 6, 4, 26, 12, 12, 10, 6, 4, 26, 12, 12, 10, 6, 4, 26]);
   });
   </script>
   <p style="clear:both"><strong>Sparkarea with custom options:</strong> <span id="sparkarea2" class="sparkexample"></span>
-  <pre><code>var sparkarea2 = new Grafico.SparkLine($('sparkarea2'),
+  <pre><code>var sparkarea2 = new Grafico.SparkArea($('sparkarea2'),
 [30, 12, 12, 10, 6, 4, 26, 12, 12, 10, 6, 4, 26, 12, 12, 10, 6, 4, 26, 12, 12, 10, 6, 4, 26, 12, 12, 10, 6, 4, 26, 12, 12, 10, 6, 4, 26, 12, 12, 10, 6, 4, 26, 12, 12, 10, 6, 4, 26],
 {
   stroke_width : 1,
