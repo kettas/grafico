@@ -281,7 +281,7 @@ Grafico.BaseGraph = Class.create(Grafico.Base, {
     this.x_padding_left = 10 + this.paddingLeftOffset();
     this.x_padding_left += this.options.vertical_label_unit ? 6 : 0;
     this.x_padding_left = this.options.left_padding ? this.options.left_padding : this.x_padding_left;
-    this.x_padding_right = this.paddingRightOffset();
+    this.x_padding_right = this.options.right_padding || this.paddingRightOffset();
     this.x_padding = this.x_padding_left + this.x_padding_right;
     this.y_padding_top = this.options.padding_top;
     this.y_padding_bottom = 20 + this.paddingBottomOffset();
@@ -431,7 +431,7 @@ Grafico.BaseGraph = Class.create(Grafico.Base, {
 
   paddingRightOffset: function () {
     // default value, can be overridden
-    return this.options.right_padding || 20;
+    return 20;
   },
 
   paddingBottomOffset: function () {
