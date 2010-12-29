@@ -233,7 +233,7 @@ Grafico.BaseGraph = Class.create(Grafico.Base, {
       focus_hint:             true,
       min:                    0,
       max:                    null,
-      normaliserConst:        Grafico.Normaliser
+      normaliser:        Grafico.Normaliser
     };
 
     Object.extend(this.options, this.chartDefaults() || { });
@@ -251,7 +251,7 @@ Grafico.BaseGraph = Class.create(Grafico.Base, {
       this.flat_data.push(this.base_line);
       this.flat_data = this.flat_data.flatten();
     }
-    this.normaliser = new this.options.normaliserConst(this.flat_data, this.normaliserOptions());
+    this.normaliser = new this.options.normaliser(this.flat_data, this.normaliserOptions());
     this.label_step = this.normaliser.step;
     this.range = this.normaliser.range;
     this.start_value = this.normaliser.start_value;
