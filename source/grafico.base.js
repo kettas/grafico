@@ -227,11 +227,13 @@ Grafico.BaseGraph = Class.create(Grafico.Base, {
       watermark_location:     false, // determine position of watermark. currently available is bottomright and middle
       hide_empty_label_grid:  false, // hide gridlines for labels with no value
       left_padding:           false, // set a standard leftpadding regardless of label width
+      right_padding:          false,
       label_rotation:         0,
       label_max_size:         false,
       focus_hint:             true,
       min:                    0,
-      max:                    null
+      max:                    null,
+      normaliserConst:        Grafico.Normaliser
     };
 
     Object.extend(this.options, this.chartDefaults() || { });
@@ -249,7 +251,7 @@ Grafico.BaseGraph = Class.create(Grafico.Base, {
       this.flat_data.push(this.base_line);
       this.flat_data = this.flat_data.flatten();
     }
-    this.normaliser = new Grafico.Normaliser(this.flat_data, this.normaliserOptions());
+    this.normaliser = new this.options.normaliserConst(this.flat_data, this.normaliserOptions());
     this.label_step = this.normaliser.step;
     this.range = this.normaliser.range;
     this.start_value = this.normaliser.start_value;
@@ -279,7 +281,7 @@ Grafico.BaseGraph = Class.create(Grafico.Base, {
     this.x_padding_left = 10 + this.paddingLeftOffset();
     this.x_padding_left += this.options.vertical_label_unit ? 6 : 0;
     this.x_padding_left = this.options.left_padding ? this.options.left_padding : this.x_padding_left;
-    this.x_padding_right = 20;
+    this.x_padding_right = this.paddingRightOffset();
     this.x_padding = this.x_padding_left + this.x_padding_right;
     this.y_padding_top = this.options.padding_top;
     this.y_padding_bottom = 20 + this.paddingBottomOffset();
@@ -425,6 +427,11 @@ Grafico.BaseGraph = Class.create(Grafico.Base, {
       result = longest_label_length * this.options.font_size;
     }
     return result;
+  },
+
+  paddingRightOffset: function () {
+    // default value, can be overridden
+    return this.options.right_padding || 20;
   },
 
   paddingBottomOffset: function () {
