@@ -6,9 +6,8 @@
  * Licensed under the MIT license. http://www.opensource.org/licenses/mit-license.php
  *
  */
-"use strict";
 var Grafico = {
-  Version: "0.9",
+  Version: "0.9.1",
 
   Base: {},
   BaseGraph: {},
@@ -159,7 +158,7 @@ Grafico.Normaliser = Class.create({
     } else {
       p = Math.pow(10, exp);
     }
-    f = x / p
+    f = x / p;
 
     if (round) {
       if (f < 1.5) {

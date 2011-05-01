@@ -7,7 +7,6 @@
  *
  */
 
-"use strict";
 Grafico.LineGraph = Class.create(Grafico.BaseGraph, {
   chartDefaults: function () {
     return {
@@ -254,7 +253,7 @@ Grafico.StreamGraph = Class.create(Grafico.StackGraph, {
 
   stackData: function (stacked_data) {
     var i,j;
-    
+
     if (this.options.stream_smart_insertion) {
       stacked_data = $A(stacked_data);
       stacked_data.each(function(data_set) {

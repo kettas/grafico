@@ -7,7 +7,6 @@
  *
  */
 
-"use strict";
 Grafico.BarGraph = Class.create(Grafico.BaseGraph, {
   chartDefaults: function () {
     return {

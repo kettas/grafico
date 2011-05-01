@@ -7,7 +7,6 @@
  *
  */
 
-"use strict";
 Grafico.SparkLine = Class.create(Grafico.Base, {
   initialize: function (element, data, options) {
     this.element = element;
