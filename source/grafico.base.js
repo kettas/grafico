@@ -545,7 +545,11 @@ Grafico.BaseGraph = Class.create(Grafico.Base, {
     if (this.options.start_at_zero === false) {
       odd_horizontal_offset = 0;
       $A(coords).each(function (coord, index) {
-        if (coord[1] === y_offset) {odd_horizontal_offset++;}
+        if (coord[1] === y_offset) {
+          odd_horizontal_offset++;
+        } else {
+          throw $break;
+        }
       });
       this.options.odd_horizontal_offset = odd_horizontal_offset;
 
