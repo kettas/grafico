@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" >
+    <title>XXXXXXXXXXXX</title>
+    <script type="text/javascript" src="jquery-1.7.2.min.js"></script>
+    <script src="./dependencies/prototype.js" type="text/javascript" charset="utf-8"></script>
+    <script src="./dependencies/raphael.js" type="text/javascript" charset="utf-8"></script>
+    <!-- <script src="./packaged/grafico.min.js" type="text/javascript" charset="utf-8"></script> -->
+    <script src="./source/grafico.base.js" type="text/javascript" charset="utf-8"></script>
+    <script src="./source/grafico.line.js" type="text/javascript" charset="utf-8"></script>
+  </head>
+
+<body>
+  <center>稳健成长</center>
+  <div id="areagraph2" class="example"style="height:300px;width:765px;"></div>
+  <button>年</button>
+  <button>月</button>
+  <button>日</button>
+  <script>
+  Event.observe(window, 'load', function() {
+    var areagraph2 = new Grafico.AreaGraph(
+    		$('areagraph2')
+    		,{ workload: [2,1.05,4,1,1,1.08,1.1,1.15,1.15,1.2] }
+		    ,{
+		    	  grid :                  true,
+		    	  area_opacity :          0.1,
+		    	  plot_padding :          0,
+		    	  font_size :             11,
+		    	  hover_label_style:        {"font-size":"13","font-weight":"bold","font-family":"宋体","opacity":"15"},
+		    	  vertical_label_unit :   "元",
+		    	  colors :                { workload: '#4b80b6' },
+		    	  background_color :      "#fff",
+		    	  label_color :           "#444",
+		    	  grid_color :            "#ccf",
+		    	  markers :               "value",
+		    	  meanline :              {'stroke-width': '1px', stroke: '#0000FF' },
+		    	  draw_axis :             false,
+		    	  labels :                ['2015.10.13','2015.10.13','2015.10.14','10月15','10月16','10月17','10月18','10月19','10月20','2015.10.28'],
+		    	  datalabels :            { workload: '净值' },
+		    	  label_max_size :        12
+		    });
+  });
+  </script>
+  </body>
+</html>
+

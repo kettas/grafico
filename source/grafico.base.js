@@ -125,7 +125,8 @@ Grafico.Normaliser = Class.create({
 
     // Round to a proper origin value
     if (min !== max) {
-      graphmin = this.roundToOrigin(graphmin, 1);
+    
+      //graphmin = this.roundToOrigin(graphmin,1);
     }
 
     this.range = this.roundToPrecision(Math.abs( this.ceilToPrecision(graphmax, precision) - this.floorToPrecision(graphmin, precision)), precision);
@@ -278,7 +279,7 @@ Grafico.BaseGraph = Class.create(Grafico.Base, {
 
     /* Padding around the graph area to make room for labels */
     this.x_padding_left = 10 + this.paddingLeftOffset();
-    this.x_padding_left += this.options.vertical_label_unit ? 6 : 0;
+    this.x_padding_left += this.options.vertical_label_unit ? 12 : 0;
     this.x_padding_left = this.options.left_padding ? this.options.left_padding : this.x_padding_left;
     this.x_padding_right = this.options.right_padding || this.paddingRightOffset();
     this.x_padding = this.x_padding_left + this.x_padding_right;
@@ -689,8 +690,7 @@ Grafico.BaseGraph = Class.create(Grafico.Base, {
         font_options = {"font": this.options.font_size + 'px "Arial"', stroke: "none", fill: this.options.label_color};
 
     Object.extend(font_options, extra_font_options || {});
-
-    labels.each(function (label) {
+    labels.each(function (label,n) {
       if (this.options.draw_axis &&
           ((this.options.hide_empty_label_grid === true && label !== "") || this.options.hide_empty_label_grid === false) &&
           this.options.show_ticks) {
@@ -699,7 +699,14 @@ Grafico.BaseGraph = Class.create(Grafico.Base, {
       }
 
       if (label !== "") {
-        this.paper.text(x + font_offsets[0], y - 2 - font_offsets[1], label.toString()).attr(font_options);
+      	if(label.indexOf("元")>=0){
+	      	this.paper.text(x + font_offsets[0], y - 2 - font_offsets[1], label.toString()).attr(font_options);
+		}else if(n==0){
+			this.paper.text(x + font_offsets[0], y - 2 - font_offsets[1], label.toString()).attr(font_options);
+		}else if(labels.length-1==n){
+			this.paper.text(x + font_offsets[0]-12, y - 2 - font_offsets[1], label.toString()).attr(font_options);
+		}
+        //this.paper.text(x + font_offsets[0], y - 2 - font_offsets[1], label.toString()).attr(font_options);
       }
 
       x = x + x_offset(step);

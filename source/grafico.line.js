@@ -61,7 +61,7 @@ Grafico.LineGraph = Class.create(Grafico.BaseGraph, {
       circle.animate({r: old_marker_size, fill: color}, 200);
     });
   },
-
+  point:-1,
   drawGraphValueMarkers: function (index, x, y, color, datalabel, element, graphindex) {
     index += this.options.odd_horizontal_offset>1 ? this.options.odd_horizontal_offset : 0;
     index -= this.options.stacked_fill || this.options.area ? 1 : 0;
@@ -96,11 +96,19 @@ Grafico.LineGraph = Class.create(Grafico.BaseGraph, {
       } else {
         datalabel = "" + currentvalue;
       }
-      datalabel += this.options.vertical_label_unit ? " " + this.options.vertical_label_unit : "";
+	 ++this.point;
+     datalabel +=this.options.vertical_label_unit ? " " + this.options.vertical_label_unit : "";
+     datalabel =this.options.labels[this.point]+" "+datalabel;
+     if(this.options.labels.length==this.point){
+    	 this.point=-1;
+     }
 
+      this.options.hover_label_style.fill=this.options.hover_text_color;
+      this.options.hover_label_style.opacity=1;
       var hoverSet = this.paper.set(),
           textpadding = 4,
-          text = this.paper.text(circle.attrs.cx, circle.attrs.cy - (this.options.font_size * 1.5) -2 * textpadding, datalabel).attr({'font-size': this.options.font_size, fill:this.options.hover_text_color, opacity: 1}),
+          //text = this.paper.text(circle.attrs.cx, circle.attrs.cy - (this.options.font_size * 1.5) -2 * textpadding, datalabel).attr(this.options.hover_label_style{'font-size': this.options.label_font_size, fill:this.options.hover_text_color, opacity: 1}),
+          text = this.paper.text(circle.attrs.cx, circle.attrs.cy - (this.options.font_size * 1.5) -2 * textpadding, datalabel).attr(this.options.hover_label_style),
           textbox = text.getBBox(),
           roundRect= this.drawRoundRect(text, textbox, textpadding),
           nib = this.drawNib(text, textbox, textpadding);
@@ -124,8 +132,8 @@ Grafico.AreaGraph = Class.create(Grafico.LineGraph, {
     return {
       area: true,
       area_opacity: false,
-      stroke_width: 0,
-      curve_amount: 10
+      stroke_width: 1,
+      curve_amount: 0.5
     };
   },
 
